@@ -20,7 +20,14 @@ public class ParserController {
     public Response parseSentence(@RequestBody Feedback feedback) {
         log.info("under parse method");
         log.info("data :: {}", feedback.getData());
-        return parseService.classifyFeedback(feedback);
+        return parseService.parseData(feedback);
+    }
+
+    @GetMapping(value = "/analyze", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Response analyzeSentiments(@RequestBody Feedback feedback) {
+        log.info("under analyzeSentiments method");
+        log.info("data :: {}", feedback.getData());
+        return parseService.identifyOrg(feedback);
     }
 
 }
